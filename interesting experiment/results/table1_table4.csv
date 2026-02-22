@@ -1,0 +1,4 @@
+Model,original_acc_mean,original_acc_std,original_f1_mean,original_f1_std,original_auc_mean,original_auc_std,chatgpt_acc_mean,chatgpt_acc_std,chatgpt_f1_mean,chatgpt_f1_std,chatgpt_auc_mean,chatgpt_auc_std,gemini_acc_mean,gemini_acc_std,gemini_f1_mean,gemini_f1_std,gemini_auc_mean,gemini_auc_std
+LR,82.199,0.0,81.4679,0.0,81.7561,0.0,69.6335,0.0,72.1952,0.0,79.7398,0.0,79.0576,0.0,79.5578,0.0,80.374,0.0
+DT,89.3194,0.2565,88.9779,0.2942,90.9268,0.632,61.3613,0.6946,64.8116,0.6351,64.574,0.9419,81.3613,0.4188,81.6688,0.4119,77.161,0.7285
+RF,86.911,0.5735,86.5374,0.5678,95.4943,0.1749,63.6649,1.5389,66.8905,1.4214,75.2943,0.2854,79.1623,0.3918,79.8164,0.3598,79.9707,0.3457

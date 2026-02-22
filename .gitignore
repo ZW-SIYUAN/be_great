@@ -1,18 +1,42 @@
-__pycache__
-*/__pycache__
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
 
-.ipynb_checkpoints
-*/.ipynb_checkpoints
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
 
-.idea
+# ── Package build ─────────────────────────────────────────────
+*.egg-info/
+dist/
+build/
+*.egg
 
-examples/iris*
-examples/trainer_*
-
+# ── IDE / OS ──────────────────────────────────────────────────
+.idea/
+.vscode/
 .DS_Store
+Thumbs.db
 
+# ── Claude Code (local settings, not project config) ──────────
+.claude/
+
+# ── Model weights (large binary files) ───────────────────────
+# .safetensors / .bin are model checkpoints; share via HuggingFace Hub instead
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# ── Trainer checkpoints (可达数十GB，不入库) ──────────────────
+trainer_great/
+**/checkpoint-*/
+
+# ── Root-level model directory generated during early experiments ──
+electricity_great_model/
+
+# ── Legacy / scratch ──────────────────────────────────────────
 testing/
-
-be_great.egg-info/
-
-../be_great.egg-info/

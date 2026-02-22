@@ -1,0 +1,4 @@
+method,disc_acc_mean,disc_acc_std
+great,63.6245,2.1685
+chatgpt,66.5502,1.3202
+gemini,61.6157,2.4132
