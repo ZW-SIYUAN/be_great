@@ -1,4 +1,0 @@
-Model,original_acc_mean,original_acc_std,original_f1_mean,original_f1_std,original_auc_mean,original_auc_std,great_acc_mean,great_acc_std,great_f1_mean,great_f1_std,great_auc_mean,great_auc_std
-LR,83.2461,0.0,82.1322,0.0,81.4146,0.0,79.0576,0.0,72.7064,0.0,77.1382,0.0
-DT,89.3194,0.2565,88.9779,0.2942,90.9268,0.632,71.3089,1.7646,69.4875,1.5887,53.8374,1.3125
-RF,87.0157,0.513,86.6594,0.4968,95.4553,0.1602,76.4398,0.0,72.2807,0.2029,69.3854,0.6245
