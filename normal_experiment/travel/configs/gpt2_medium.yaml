@@ -1,0 +1,37 @@
+# Travel × gpt2-medium
+# 路径相对于 normal_experiment/travel/
+
+dataset:
+  name: travel
+  train_csv: data/travel_train.csv
+  target_col: Target
+  n_samples: 763
+  max_length: 200         # gpt2-medium 最大上下文 1024，200 足够
+
+model:
+  llm: "gpt2-medium"
+  epochs: 150
+  batch_size: 32          # gpt2-medium 345M，比 Qwen 0.3B 略大，从64降至32
+  float_precision: 3
+  bf16: true
+  dataloader_num_workers: 0
+
+lora:
+  r: 16
+  lora_alpha: 32
+  # GPT-2 使用 Conv1D 结构：
+  #   c_attn — 单矩阵同时投影 Q/K/V（3*embed_dim）
+  #   c_proj — 注意力输出投影
+  target_modules: ["c_attn", "c_proj"]
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+output:
+  model_dir: travel_great_model/gpt2-medium
+  synthetic_csv: data/gpt2-medium/travel_synthetic.csv
+
+sampling:
+  guided_sampling: true
+  random_feature_order: true
+  temperature: 0.7

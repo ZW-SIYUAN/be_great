@@ -1,0 +1,36 @@
+# California Housing × tabularisai/Qwen3-0.3B-distil
+# 路径相对于 IB_experiment/california_housing/
+
+dataset:
+  name: california_housing
+  train_csv: data/california_housing_train.csv
+  target_col: median_house_value      # 回归目标，GReaT 以文本形式生成
+  n_samples: 16512                    # 与训练集等量
+  # 10列 × ~25 token/列 ≈ 250 token，256 足够，设 300 留余量
+  max_length: 300
+
+model:
+  llm: "tabularisai/Qwen3-0.3B-distil"
+  # 16512/64 ≈ 258 步/epoch，30 epoch ≈ 7740 步，充足收敛
+  epochs: 30
+  batch_size: 64                      # 序列短（≈250 token），64 无显存压力
+  float_precision: 2                  # 经纬度/收入保留2位小数；房价为整数不受影响
+  bf16: true
+  dataloader_num_workers: 0           # Windows 下保持 0
+
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+output:
+  model_dir: california_great_model/Qwen3-0.3B-distil
+  synthetic_csv: data/Qwen3-0.3B-distil/california_housing_synthetic.csv
+
+sampling:
+  guided_sampling: true
+  random_feature_order: true
+  temperature: 0.7

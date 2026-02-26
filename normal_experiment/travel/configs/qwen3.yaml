@@ -1,0 +1,34 @@
+# Travel × tabularisai/Qwen3-0.3B-distil
+# 路径相对于 normal_experiment/travel/
+
+dataset:
+  name: travel
+  train_csv: data/travel_train.csv
+  target_col: Target
+  n_samples: 763          # 与训练集等量（符合论文设置）
+  max_length: 200         # 7列文本短，200 token 足够
+
+model:
+  llm: "tabularisai/Qwen3-0.3B-distil"
+  epochs: 150             # 763/64≈12步/epoch，150epoch≈1800步，充足收敛
+  batch_size: 64          # RTX5080 16GB，0.3B模型 bf16 <1GB，64无压力
+  float_precision: 3
+  bf16: true
+  dataloader_num_workers: 0   # Windows下保持0，避免多进程问题
+
+lora:
+  r: 16
+  lora_alpha: 32              # alpha/r=2，标准比例
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+output:
+  model_dir: travel_great_model/Qwen3-0.3B-distil
+  synthetic_csv: data/Qwen3-0.3B-distil/travel_synthetic.csv
+
+sampling:
+  guided_sampling: true
+  random_feature_order: true
+  temperature: 0.7

@@ -1,0 +1,34 @@
+# Sick (Thyroid) × tabularisai/Qwen3-0.3B-distil
+# 路径相对于 normal_experiment/sick/
+
+dataset:
+  name: sick
+  train_csv: data/sick_train.csv
+  target_col: Class
+  n_samples: 3016         # 与训练集等量
+  max_length: 512         # 30列文本长（≈300-400 token），512 保证完整生成
+
+model:
+  llm: "tabularisai/Qwen3-0.3B-distil"
+  epochs: 50              # 3016/8≈377步/epoch，50epoch≈18850步，充足
+  batch_size: 8           # 30列序列长，batch=8保证显存稳定
+  float_precision: 3      # TSH/T3/TT4等连续值保留3位小数
+  bf16: true
+  dataloader_num_workers: 0
+
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+output:
+  model_dir: sick_great_model/Qwen3-0.3B-distil
+  synthetic_csv: data/Qwen3-0.3B-distil/sick_synthetic.csv
+
+sampling:
+  guided_sampling: true
+  random_feature_order: true
+  temperature: 0.7

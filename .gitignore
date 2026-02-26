@@ -38,5 +38,9 @@ trainer_great/
 # ── Root-level model directory generated during early experiments ──
 electricity_great_model/
 
+# ── Data / output files (不入库，体积大或可重新生成) ──────────
+*.csv
+*.png
+
 # ── Legacy / scratch ──────────────────────────────────────────
 testing/
